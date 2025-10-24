@@ -25,7 +25,7 @@ public class Microcontrolador implements Programable{
 
     @Override
     public void run(List<Operable> operaciones) {
-        
+        operaciones.forEach(Operable :: execute);
     }
 
     @Override
@@ -76,6 +76,10 @@ public class Microcontrolador implements Programable{
         for (int i = 0; i < this.addr.length; i++) {
             this.addr[i] = 0;
         }
+    }
+
+    public void cargarValorEnMemoria(Integer valor, Integer addr){
+        this.addr[addr] = valor;
     }
     
 
