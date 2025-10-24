@@ -3,34 +3,25 @@ package ar.unahur.edu.obj2.patroncommand.microcontrolador;
 import java.util.List;
 
 import ar.unahur.edu.obj2.patroncommand.comandos.Operable;
-import ar.unahur.edu.obj2.patroncommand.excepciones.ErrorDeDireccion;
 
 public class Microcontrolador implements Programable{
     private Integer acumuladorA;
     private Integer acumuladorB;
     private Integer programCounter;
-    private Integer addr;
+    private Integer[] addr = new Integer[1024];
 
     public Microcontrolador(Integer addr) {
         this.acumuladorA = 0;
         this.acumuladorB = 0;
         this.programCounter = 0;
-        try {
-            this.asignarAddrValorEntre0Y1024(addr);
-        } catch (ErrorDeDireccion e) {
-            System.out.println(e.getMessage());
+        for (int i = 0; i < addr; i++) {
+            this.addr[i] = 0;
         }
-
+       
+        
     }
 
-    private void asignarAddrValorEntre0Y1024(Integer valor){
-        if(valor >= 0 && valor <= 1024){
-            this.addr = valor;
-        }
-        else{
-            throw new ErrorDeDireccion("Direccion de memoria incorrecto");
-        }
-    }
+    
 
     @Override
     public void run(List<Operable> operaciones) {
@@ -69,12 +60,12 @@ public class Microcontrolador implements Programable{
 
     @Override
     public void setAddr(Integer addr) {
-        this.addr = addr;
+        this.addr = new Integer[addr];
     }
 
     @Override
     public Integer getAddr(Integer addr) {
-       return this.addr;
+       return this.addr[addr];
     }
 
     @Override
@@ -82,6 +73,9 @@ public class Microcontrolador implements Programable{
         this.acumuladorA = 0;
         this.acumuladorB = 0;
         this.programCounter = 0;
+        for (int i = 0; i < this.addr.length; i++) {
+            this.addr[i] = 0;
+        }
     }
     
 
