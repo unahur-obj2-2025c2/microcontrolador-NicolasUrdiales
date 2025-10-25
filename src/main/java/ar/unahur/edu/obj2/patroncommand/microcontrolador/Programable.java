@@ -23,5 +23,7 @@ public interface Programable {
 
     Integer getAddr(Integer addr);
 
+    void cargarValorEnMemoria(Integer valor, Integer addr);
+
     void reset();
 }

@@ -10,11 +10,11 @@ public class Microcontrolador implements Programable{
     private Integer programCounter;
     private Integer[] addr = new Integer[1024];
 
-    public Microcontrolador(Integer addr) {
+    public Microcontrolador() {
         this.acumuladorA = 0;
         this.acumuladorB = 0;
         this.programCounter = 0;
-        for (int i = 0; i < addr; i++) {
+        for (int i = 0; i < 1024; i++) {
             this.addr[i] = 0;
         }
        
@@ -77,7 +77,7 @@ public class Microcontrolador implements Programable{
             this.addr[i] = 0;
         }
     }
-
+    @Override
     public void cargarValorEnMemoria(Integer valor, Integer addr){
         this.addr[addr] = valor;
     }
