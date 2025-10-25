@@ -1,5 +1,6 @@
 package ar.unahur.edu.obj2.patroncommand.microcontrolador;
 
+import java.util.Arrays;
 import java.util.List;
 
 import ar.unahur.edu.obj2.patroncommand.comandos.Operable;
@@ -8,15 +9,13 @@ public class Microcontrolador implements Programable{
     private Integer acumuladorA;
     private Integer acumuladorB;
     private Integer programCounter;
-    private Integer[] addr = new Integer[1024];
+    private List<Integer> memoria = Arrays.asList(new Integer[1024]);
 
     public Microcontrolador() {
         this.acumuladorA = 0;
         this.acumuladorB = 0;
         this.programCounter = 0;
-        for (int i = 0; i < 1024; i++) {
-            this.addr[i] = 0;
-        }
+        
        
         
     }
@@ -25,7 +24,7 @@ public class Microcontrolador implements Programable{
 
     @Override
     public void run(List<Operable> operaciones) {
-        operaciones.forEach(Operable :: execute);
+        operaciones.forEach(o -> o.execute(this));
     }
 
     @Override
@@ -60,12 +59,12 @@ public class Microcontrolador implements Programable{
 
     @Override
     public void setAddr(Integer addr) {
-        this.addr = new Integer[addr];
+        memoria.set(addr, acumuladorA);
     }
 
     @Override
     public Integer getAddr(Integer addr) {
-       return this.addr[addr];
+       return memoria.get(addr);
     }
 
     @Override
@@ -73,14 +72,12 @@ public class Microcontrolador implements Programable{
         this.acumuladorA = 0;
         this.acumuladorB = 0;
         this.programCounter = 0;
-        for (int i = 0; i < this.addr.length; i++) {
-            this.addr[i] = 0;
-        }
+        memoria = Arrays.asList(new Integer[1024]);
     }
-    @Override
-    public void cargarValorEnMemoria(Integer valor, Integer addr){
-        this.addr[addr] = valor;
-    }
+
+
+
+    
     
 
 }

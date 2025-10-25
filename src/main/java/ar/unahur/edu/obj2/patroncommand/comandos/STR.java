@@ -3,21 +3,19 @@ package ar.unahur.edu.obj2.patroncommand.comandos;
 import ar.unahur.edu.obj2.patroncommand.microcontrolador.Programable;
 
 public class STR extends Operaciones{
-    private Integer addr;
+    private final Integer addr;
 
-    public STR(Programable micro, Integer addr) {
-        super(micro);
+    public STR(Integer addr) {
+       
         this.addr = addr;
     }
 
 
 
     @Override
-    protected void doExecute() {
-        Integer acumuladorA = micro.getAcumuladorA();
-        micro.cargarValorEnMemoria(acumuladorA, addr);
+    protected void doExecute(Programable micro) {
+      micro.setAddr(addr);
     }
-    
 
 
 }

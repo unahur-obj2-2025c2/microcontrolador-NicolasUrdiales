@@ -4,15 +4,12 @@ import ar.unahur.edu.obj2.patroncommand.microcontrolador.Programable;
 
 public class SWAP extends Operaciones{
 
-    public SWAP(Programable micro) {
-        super(micro);
-    }
-
+    
     
 
 
     @Override
-    protected void doExecute() {
+    protected void doExecute(Programable micro) {
         Integer acumuladorA = micro.getAcumuladorA();
         Integer acumuladorB = micro.getAcumuladorB();
 

@@ -18,7 +18,7 @@ public class MicrocontroladorTest {
 
     @Test
     void siElMicroEjecuta3NOP_ElCounterEstaEn3(){
-        List<Operable> operaciones = List.of(new NOP(micro), new NOP(micro), new NOP(micro));
+        List<Operable> operaciones = List.of(new NOP(), new NOP(), new NOP());
 
         micro.run(operaciones);
 
@@ -27,7 +27,7 @@ public class MicrocontroladorTest {
 
     @Test
     void despuesDeEjecutarLosSiguientesComandosELPCSeVaA4YElAcumuladorAEs37YElB0(){
-        List<Operable> operaciones = List.of(new LODV(micro,20), new SWAP(micro), new LODV(micro, 17), new ADD(micro));
+        List<Operable> operaciones = List.of(new LODV(20), new SWAP(), new LODV(17), new ADD());
 
         micro.run(operaciones);
 
@@ -39,15 +39,15 @@ public class MicrocontroladorTest {
     @Test
     void despuesDeVariasOperacionesElAcumuladorAQuedaEn15YElBEn0(){
         List<Operable> operaciones = List.of(
-            new LODV(micro, 2),
-            new STR(micro, 0),
-            new LODV(micro ,8),
-            new SWAP(micro),
-            new LODV(micro ,5),
-            new ADD(micro),
-            new SWAP(micro),
-            new LOD(micro, 0),
-            new ADD(micro)
+            new LODV(2),
+            new STR(0),
+            new LODV(8),
+            new SWAP(),
+            new LODV(5),
+            new ADD(),
+            new SWAP(),
+            new LOD(0),
+            new ADD()
 
         );
 

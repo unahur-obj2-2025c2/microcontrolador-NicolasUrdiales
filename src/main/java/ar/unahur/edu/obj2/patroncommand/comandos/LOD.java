@@ -7,18 +7,17 @@ public class LOD extends Operaciones{
 
     
 
-    public LOD(Programable micro, Integer addr) {
-        super(micro);
+    public LOD(Integer addr) {
         this.addr = addr;
     }
 
 
 
     @Override
-    protected void doExecute() {
-        Integer valorEnAddr = micro.getAddr(addr);
-        Integer acumuladorA = micro.getAcumuladorA();
-        micro.setAcumuladorA(acumuladorA + valorEnAddr);
+    protected void doExecute(Programable micro) {
+        Integer valorEnMemoria = micro.getAddr(addr);
+        
+        micro.setAcumuladorA(valorEnMemoria);
     }
 
     

@@ -3,13 +3,12 @@ package ar.unahur.edu.obj2.patroncommand.comandos;
 import ar.unahur.edu.obj2.patroncommand.microcontrolador.Programable;
 
 public class LODV extends Operaciones{
-    private Integer valor;
+    private final Integer valor;
 
     
 
 
-    public LODV(Programable micro, Integer valor) {
-        super(micro);
+    public LODV(Integer valor) {
         this.valor = valor;
     }
 
@@ -17,7 +16,7 @@ public class LODV extends Operaciones{
 
 
     @Override
-    protected void doExecute() {
+    protected void doExecute(Programable micro) {
         micro.setAcumuladorA(valor);
     }
 
