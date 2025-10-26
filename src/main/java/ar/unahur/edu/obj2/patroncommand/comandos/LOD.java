@@ -3,7 +3,7 @@ package ar.unahur.edu.obj2.patroncommand.comandos;
 import ar.unahur.edu.obj2.patroncommand.microcontrolador.Programable;
 
 public class LOD extends Operaciones{
-    private Integer addr;
+    private final Integer addr;
 
     
 

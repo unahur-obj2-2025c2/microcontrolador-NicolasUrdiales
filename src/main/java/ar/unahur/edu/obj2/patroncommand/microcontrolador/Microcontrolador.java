@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ar.unahur.edu.obj2.patroncommand.comandos.Operable;
+import ar.unahur.edu.obj2.patroncommand.excepciones.ErrorDeDireccion;
 
 public class Microcontrolador implements Programable{
     private Integer acumuladorA;
@@ -59,12 +60,14 @@ public class Microcontrolador implements Programable{
 
     @Override
     public void setAddr(Integer addr) {
+        this.fueraDeRangoDeMemoria(addr);
         memoria.set(addr, acumuladorA);
     }
 
     @Override
     public Integer getAddr(Integer addr) {
-       return memoria.get(addr);
+        this.fueraDeRangoDeMemoria(addr);
+        return memoria.get(addr);
     }
 
     @Override
@@ -75,7 +78,11 @@ public class Microcontrolador implements Programable{
         memoria = Arrays.asList(new Integer[1024]);
     }
 
-
+    private void fueraDeRangoDeMemoria(Integer addr){
+        if(addr > 1023 || addr < 0){
+            throw new ErrorDeDireccion("La direccion debe ser un valor de 0 a 1023");
+        }
+    }
 
     
     
