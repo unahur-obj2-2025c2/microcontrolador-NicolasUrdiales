@@ -25,4 +25,8 @@ public interface Programable {
 
     void reset();
 
+    Programable copiar();
+
+    void copiarDesde(Programable microDeRespaldo);
+
 }
